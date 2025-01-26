@@ -1,4 +1,4 @@
-# BrainBuddy
-SwampHacks 2025!! Project!!
-#Tanvi Garg
+BrainBuddy
+SwampHacks X
+Tanvi Garg
 Grace Zhao :D
