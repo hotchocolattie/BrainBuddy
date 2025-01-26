@@ -6,13 +6,13 @@ function App() {
     
 
       <div class = "navbuttons">
-      <a href="index.html">
+      <a href="index.js">
         <button>Home</button>
       </a>
-      <a href="journal.html">
+      <a href="journal.js">
         <button>Journal</button>
       </a>
-      <a href="productivity.html">
+      <a href="/Productivity/Productivity.js">
         <button>Productivity</button>
       </a>
       <script src="script.js"></script>
