@@ -4,10 +4,10 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <div class="navBar">
-      <Link to="/" class="page" id="logoButton">myJournal</Link>
-      <Link to="/productivity" class="page" id="prodButton">productivity</Link>
-      <Link to="stress-reduction" class="page" id="stressButton">stress help</Link>
+    <div className="navBar">
+      <Link to="/" className="page" id="logoButton">myJournal</Link>
+      <Link to="/productivity" className="page" id="prodButton">productivity</Link>
+      <Link to="stress-reduction" className="page" id="stressButton">stress relief</Link>
     </div>
   )
 }

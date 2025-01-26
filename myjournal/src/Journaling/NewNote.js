@@ -11,17 +11,20 @@ const NewNote = () => {
   const [currentNote, setCurrentNote] = useState("");
   // sets and gets the name the user wants to save the journal entry as
   const [noteName, setNoteName] = useState("");
-
   // journal entries are stored on local storage for now, where we get them from.
   // So this basically just loads the entries saved on local storage to the site
   // yippee for local storage!! lets use up all the user's space!!!
   // guys i dont know how to use mongodb
   useEffect(() => {
     const savedNotes = localStorage.getItem("journalNotes");
+    console.log("Loaded notes from local storage:", savedNotes);
+
 
     if (savedNotes) {
         const parsedNotes = JSON.parse(savedNotes);
+        console.log("Parsed notes:", parsedNotes);
         setNotes(parsedNotes);
+        console.log("setnotes parse:", notes);
     } else {
         setNotes({});
     }
@@ -29,7 +32,9 @@ const NewNote = () => {
 
   // whenever the entries are changed by the user, make sure the local storage changes too!!
   useEffect(() => {
+    console.log("Current notes state before saving:", notes);
     const notesStringify = JSON.stringify(notes);
+    console.log("Saving notes to local storage:", notesStringify);
     localStorage.setItem("journalNotes", notesStringify);
   }, [notes]); // [notes] is here because whether the storage needs to be updated or not depends on the entries variable (apparently..? i had to google to get this part to work)
 
@@ -68,14 +73,14 @@ const saveEntry = () => {
 
 
 return (
-    <div class="body">
-        <div class="new-note-container" style={{display: "inline-block", flexDirection: "column", position: "relative", width:"97%"}}>
+    <div className="body">
+        <div className="new-note-container" style={{display: "inline-block", flexDirection: "column", position: "relative", width:"97%"}}>
             <input
                 type="text"
                 value={noteName}
                 onChange={(e) => setNoteName(e.target.value)}
                 placeholder="Name your entry..." 
-                class="new-note-title"
+                className="new-note-title"
                 style={{ width: "99%" }}
             />
 
@@ -84,18 +89,18 @@ return (
                 onChange={(e) => setCurrentNote(e.target.value)}
                 placeholder="Write your thoughts..."
                 rows={6}
-                class="new-note-content"
+                className="new-note-content"
                 style={{ width: "98%", resize: "none" }}
             />
 
             <br />
             <br />
-            <button class="buttons" onClick={saveEntry} style={{position: "absolute", left:"20px", bottom:"8px"}}>Save</button>
+            <button className="buttons" onClick={saveEntry} style={{position: "absolute", left:"20px", bottom:"8px"}}>Save</button>
         </div>
         
         <br /> <br /> 
 
-        <div class="old-notes-container">
+        <div className="old-notes-container">
             <h2>Entries</h2>
 
             {
