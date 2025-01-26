@@ -35,29 +35,30 @@ const NewNote = () => {
 
   // this code handles saving a new journal entry to local storage
   // saveNote is as a funct because it's called when the save button is clicked!
-  const saveEntry = () => {
+const saveEntry = () => {
     const trimTitle = noteName.trim();
     const trimEntry = currentNote.trim();
 
-    if (trimTitle === ""){
-        setNoteName("Untitled" + Object.keys(notes).length);
+    if (trimEntry === "") {
+            alert("Brevity is the wit of the soul, but it is not shameful to express your thoughts. Please enter some text!");
+            return;
     }
 
-    if (trimEntry === ""){
-        alert("Brevity is the wit of the soul, but it is not shameful to express your thoughts :) (Please enter some text!");
-        return;
+    let finalTitle = trimTitle;
+    if (trimTitle === "") {
+            finalTitle = "Untitled" + Object.keys(notes).length;
     }
 
     const updateNotes = {
-        ...notes,
-        [noteName] : currentNote,
+            ...notes,
+            [finalTitle]: currentNote,
     };
 
     setNotes(updateNotes);
 
     setNoteName("");
     setCurrentNote("");
-  }
+}
 
   const viewNote = (name) => {
     const oldNote = notes[name];
@@ -68,15 +69,14 @@ const NewNote = () => {
 
 return (
     <div class="body">
-        <div class="new-note-container">
-            <h1>New Entry!</h1>
+        <div class="new-note-container" style={{display: "inline-block", flexDirection: "column", position: "relative", width:"97%"}}>
             <input
                 type="text"
                 value={noteName}
                 onChange={(e) => setNoteName(e.target.value)}
-                placeholder="Name your entry.." 
+                placeholder="Name your entry..." 
                 class="new-note-title"
-                style={{ width: "100%" }}
+                style={{ width: "99%" }}
             />
 
             <textarea
@@ -85,10 +85,12 @@ return (
                 placeholder="Write your thoughts..."
                 rows={6}
                 class="new-note-content"
-                style={{ width: "100%" }}
+                style={{ width: "98%", resize: "none" }}
             />
 
-            <button onClick={saveEntry}>Save</button>
+            <br />
+            <br />
+            <button class="buttons" onClick={saveEntry} style={{position: "absolute", left:"20px", bottom:"8px"}}>Save</button>
         </div>
         
         <br /> <br /> 
@@ -97,16 +99,23 @@ return (
             <h2>Entries</h2>
 
             {
-                Object.keys(notes).map((name) => (
-                    <div class="old-note-card" key={name} style={{display: "inline-block", flexDirection: "column", width: "20% height: 20px;"}}>
-                        <h3 class="old-note-title">{name}</h3>
-                        <p class="old-note-content">{notes[name]}</p>
-                        <button onClick={() => viewNote(name)}>View</button>
-                    </div>
-                ))
-            }
-        </div>
-    </div>
+                Object.keys(notes).map((name) => {
+                    const titleLines = name.length > 14 ? 2 : 1; // Example condition to set data-title-lines
+                    return (
+                      <div
+                        className="old-note-card"
+                        key={name}
+                        data-title-lines={titleLines}
+                        style={{ display: "inline-block", flexDirection: "column", position: "relative" }}
+                      >
+                        <h3 className="old-note-title">{name}</h3>
+                        <p className="old-note-content">{notes[name]}</p>
+                        <button className="buttons" onClick={() => viewNote(name)} style={{ position: "absolute", bottom: "10px" }}>View</button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 )
 }
 
