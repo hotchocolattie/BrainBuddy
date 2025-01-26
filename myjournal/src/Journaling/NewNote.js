@@ -41,7 +41,6 @@ const NewNote = () => {
 
     if (trimTitle === ""){
         setNoteName("Untitled" + Object.keys(notes).length);
-        return;
     }
 
     if (trimEntry === ""){
