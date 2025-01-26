@@ -4,6 +4,7 @@ import Productivity from './Productivity/Productivity';
 import StressRed from './StressRed/StressRed';
 import Error from './Error';
 import Header from './Header';
+import CrisisHelp from './CrisisHelp/CrisisHelp';
 import './App.css';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/stress-reduction" element={<StressRed />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <CrisisHelp />
       </BrowserRouter>
     </div>
   );
