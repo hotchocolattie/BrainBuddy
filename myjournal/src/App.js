@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Journaling from './Journaling/Journaling';
+import Productivity from './Productivity/Productivity';
+import StressRed from './StressRed/StressRed';
+import Error from './Error';
+import Header from './Header';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    
-
-      <div class = "navbuttons">
-      <a href="index.js">
-        <button>Home</button>
-      </a>
-      <a href="journal.js">
-        <button>Journal</button>
-      </a>
-      <a href="/Productivity/Productivity.js">
-        <button>Productivity</button>
-      </a>
-      <script src="script.js"></script>
-   </div>
-    
+    <div>
+      <BrowserRouter>
+      < Header />
+        <Routes>
+          <Route index element={<Journaling />} />
+          <Route path="/home" element={<Journaling />} />
+          <Route path="/productivity" element={<Productivity />} />
+          <Route path="/stress-reduction" element={<StressRed />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

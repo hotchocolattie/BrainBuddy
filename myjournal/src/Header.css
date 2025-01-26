@@ -1,0 +1,14 @@
+.navBar{
+    width:100%;
+    height:100%;
+    margin-top:20px;
+    justifyContent: 'flex-start';
+    alignItems: 'flex-end';
+    gap: 271;
+    display: 'inline-flex';
+}
+
+.page{
+    margin:10%;
+    
+}
